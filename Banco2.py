@@ -1,7 +1,7 @@
 class Cliente(object):
     count=0
     #Los atributos de cliente
-    def __init__(self, name,date,curp,address,phone,first_deposit,account_type):
+    def __init__():
      self.name = input("Ingrese el nombre del cliente")
      self.date = int(input("Ingrese la fecha de nacimiento dd/mm/yyyy"))
      self.curp = input("Ingrese CURP de la persona")
