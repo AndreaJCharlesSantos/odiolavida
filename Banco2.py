@@ -1,31 +1,31 @@
 class Cliente(object):
     count=0
     #Los atributos de cliente
-    def __init__():
-     self.name = input("Ingrese el nombre del cliente")
-     self.date = int(input("Ingrese la fecha de nacimiento dd/mm/yyyy"))
-     self.curp = input("Ingrese CURP de la persona")
-     self.address = input("Ingrese la dirección")
-     self.phone = int(input("Ingrese el número de teléfono"))
-     self.first_deposit = int(input("Ingrese el deposito"))
-     self.account_type = input("Seleccione el tipo de cuenta: \n1. Ahorro \n2. Actual \n3. Por un año. \n4. Por dos años \n5. Por tres años ")
+    def __init__(self):
+     self.name = input("Ingrese el nombre del cliente ")
+     self.date = input("Ingrese la fecha de nacimiento dd/mm/yyyy ")
+     self.curp = input("Ingrese CURP de la persona ")
+     self.address = input("Ingrese la dirección ")
+     self.phone = int(input("Ingrese el número de teléfono "))
+     self.first_deposit = int(input("Ingrese el deposito "))
+     self.account_type = input("Seleccione el tipo de cuenta: \n1. Ahorro \n2. Actual \n3. Por un año. \n4. Por dos años \n5. Por tres años \n")
      
      Cliente.count=Cliente.count+1  
-            
-class Menu():
-    op=0
-    global listaclientes
-    listaclientes = list
-    
-    #FUNCIÓN PARA CREAR CLIENTE  
-    def NewAccount():
-     print("        ||||||||||CREA UNA NUEVA CUENTA||||||||||")
-     nvocliente=Cliente()
-     listaclientes.append(nvocliente)
     #FUNCIÓN PARA IMPRIMIR CLIENTE     
     def ImprimeCliente(self):
      print("Datos de usuario:\nNombre:",self.name,"\nFecha de nacimiento:",self.date,"\nCURP:",self.curp,"\nDirección:",self.address,"\nTeléfono:",self.phone,"\nPrimer deposito:",self.first_deposit,"\nTipo de cuenta:",self.account_type)
      print("Total de usuarios: ", self.count)
+     
+     
+class Menu():
+    op=0
+    global listaclientes
+    listaclientes = []
+    
+    #FUNCIÓN PARA CREAR CLIENTE  
+    def NewAccount():
+     print("        ||||||||||CREA UNA NUEVA CUENTA||||||||||")
+     listaclientes.append(Cliente())
     #FUNCIÓN PARA EDITAR
     def edit(self):
      print("         ||||||||||EDITA UNA CUENTA||||||||||")
@@ -35,14 +35,18 @@ class Menu():
     #FUNCIÓN PARA VER 
     def ver(self):
      print("         ||||||||||VER CLIENTE||||||||||")
+      
     #FUNCIÓN PARA BORRAR 
     def delete(self):
      print("         |||||||||BORRAR CLIENTE||||||||")
     #FUNCIÓN PARA VER LISTA 
-    def view_list(self):
+    def view_list():
      print("         |||||||||VER LISTA||||||||")
+     for j in listaclientes:
+      clientes_1 = listaclientes[j]
+      print(Clientes_1)
     #FUNCIÓN PARA SALIR 
-    def salida(self):
+    def salida():
      print("Gracias por usar el programa")
      exit    
     #FUNCIÓN MENÚ PRINCIPAL
@@ -61,28 +65,21 @@ class Menu():
       op = int(input("Ingresa la opción "))
       if op == 1:
        Menu.NewAccount()
-       '''
       elif op == 2:
-       Cliente.edit()
+       Menu.edit()
       elif op == 3:
-       Cliente.transaccion()
+       Menu.transaccion()
       elif op == 4:
-       Cliente.ver()
+       Menu.ver()
       elif op == 5:
-       Cliente.delete()
+       Menu.delete()
       elif op == 6:
-       Cliente.view_list()
+       Menu.view_list()
       elif op == 7:
-       Cliente.salida()
-       '''
+       Menu.salida()
  
 
 #Termina clase
 MenuBanco=Menu()
 MenuBanco.menuprincipal()
-'''
-Cliente1=Cliente("Andrea","190601","casa","holis","123","1000","1")
-Cliente2=Cliente("Andrea","190601","casa","holis","123","1000","1")
-Cliente1.ImprimeCliente()
-Cliente2.ImprimeCliente()
-'''
+print (listaclientes[0].date)
