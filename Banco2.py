@@ -9,16 +9,10 @@ class Cliente(object):
      self.phone = int(input("Ingrese el número de teléfono "))
      self.first_deposit = int(input("Ingrese el deposito "))
      self.account_type = input("Seleccione el tipo de cuenta: \n1. Ahorro \n2. Actual \n3. Por un año. \n4. Por dos años \n5. Por tres años \n")
-     
      Cliente.count=Cliente.count+1  
-    #FUNCIÓN PARA IMPRIMIR CLIENTE     
-    def ImprimeCliente(self):
-     print("Datos de usuario:\nNombre:",self.name,"\nFecha de nacimiento:",self.date,"\nCURP:",self.curp,"\nDirección:",self.address,"\nTeléfono:",self.phone,"\nPrimer deposito:",self.first_deposit,"\nTipo de cuenta:",self.account_type)
-     print("Total de usuarios: ", self.count)
-     
-     
+
 class Menu():
-    op=0
+    num=0
     global listaclientes
     listaclientes = []
     
@@ -26,25 +20,57 @@ class Menu():
     def NewAccount():
      print("        ||||||||||CREA UNA NUEVA CUENTA||||||||||")
      listaclientes.append(Cliente())
+     op=int(input("Ingrese un número para continuar "))
     #FUNCIÓN PARA EDITAR
-    def edit(self):
+    def edit():
      print("         ||||||||||EDITA UNA CUENTA||||||||||")
+     num = input("Ingrese la CURP de la persona")
+     for j in listaclientes:
+      if j.curp == num:
+       a = int(input("¿Qué desea modificar: 1. Dirección\n2. Número de teléfono"))
+       if a == 1:     
+         modificacion = input("Ingrese la nueva dirección")
+         j.dirección = modificacion
+      else:
+         print("No existe tal cuenta")     
     #FUNCIÓN PARA TRANSACCIÓN
-    def transaccion(self):
+    def transaccion():
      print("         ||||||||||REALIZA UNA TRANSACCIÓN ||||||||||")
-    #FUNCIÓN PARA VER 
-    def ver(self):
-     print("         ||||||||||VER CLIENTE||||||||||")
       
+    #FUNCIÓN PARA VER 
+    def ver():
+     print("         ||||||||||VER CLIENTE||||||||||")
+     num=int(input("Lo buscará en base en: \n1. CURP\n2. Nombre\n"))
+     if num == 1:
+      a=input("CURP de la cuenta: ")
+      for j in listaclientes:
+       if j.curp == a:
+        print('Nombre : {}, Fecha de nacimiento : {}, CURP : {}, Dirección : {}, Teléfono : {}, Deposito : {}, Tipo de cuenta : {} '.format(j.name,j.date,j.curp,j.address,j.phone,j.phone,j.first_deposit,j.account_type))
+       else:
+         print("No existe tal cuenta")
+     elif num == 2:
+       a=input("Nombre de la cuenta: ")
+       for j in listaclientes:
+        if j.name == a:
+         print('Nombre : {}, Fecha de nacimiento: {}, CURP: {}, Dirección: {}, Teléfono: {}, Deposito: {}, Tipo de cuenta: {} '.format(j.name,j.date,j.curp,j.address,j.phone,j.phone,j.first_deposit,j.account_type))  
+        elif j.name != a:
+         print("No existe tal cuenta")
     #FUNCIÓN PARA BORRAR 
-    def delete(self):
+    def delete():
      print("         |||||||||BORRAR CLIENTE||||||||")
+     num = input("Ingrese la CURP de la cuenta ")
+     for j in listaclientes:
+      if j.curp == num:
+       listaclientes.remove(j)
+      else:
+       print("No existe tal cuenta")
+     op=int(input("Ingrese un número para continuar "))
     #FUNCIÓN PARA VER LISTA 
     def view_list():
      print("         |||||||||VER LISTA||||||||")
      for j in listaclientes:
-      clientes_1 = listaclientes[j]
-      print(Clientes_1)
+      print('Nombre : {}, Fecha de nacimiento: {}, CURP: {}, Dirección: {}, Teléfono: {}, Deposito: {}, Tipo de cuenta: {} '.format(j.name,j.date,j.curp,j.address,j.phone,j.phone,j.first_deposit,j.account_type))
+     op=int(input("Ingrese un número para continuar "))
     #FUNCIÓN PARA SALIR 
     def salida():
      print("Gracias por usar el programa")
@@ -77,9 +103,11 @@ class Menu():
        Menu.view_list()
       elif op == 7:
        Menu.salida()
+      elif op != 1 or op != 2 or op != 3 or op != 4 or op != 5 or op != 6 or op != 7:
+        print("Ingrese una opción correcta")
  
 
 #Termina clase
 MenuBanco=Menu()
 MenuBanco.menuprincipal()
-print (listaclientes[0].date)
+
