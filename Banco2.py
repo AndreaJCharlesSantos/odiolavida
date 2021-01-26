@@ -2,12 +2,12 @@ class Cliente(object):
     count=0
     #Los atributos de cliente
     def __init__(self):
-     self.name = input("Ingrese el nombre del cliente ")
-     self.date = input("Ingrese la fecha de nacimiento dd/mm/yyyy ")
-     self.curp = input("Ingrese CURP de la persona ")
-     self.address = input("Ingrese la dirección ")
-     self.phone = int(input("Ingrese el número de teléfono "))
-     self.first_deposit = int(input("Ingrese el deposito "))
+     self.name = input("Ingrese el nombre del cliente: ")
+     self.date = input("Ingrese la fecha de nacimiento dd/mm/yyyy: ")
+     self.curp = input("Ingrese CURP de la persona: ")
+     self.address = input("Ingrese la dirección: ")
+     self.phone = int(input("Ingrese el número de teléfono: "))
+     self.first_deposit = int(input("Ingrese el deposito: "))
      self.account_type = input("Seleccione el tipo de cuenta: \n1. Ahorro \n2. Actual \n3. Por un año. \n4. Por dos años \n5. Por tres años \n")
      Cliente.count=Cliente.count+1  
 
@@ -24,19 +24,27 @@ class Menu():
     #FUNCIÓN PARA EDITAR
     def edit():
      print("         ||||||||||EDITA UNA CUENTA||||||||||")
-     num = input("Ingrese la CURP de la persona")
+     num = input("Ingrese la CURP de la persona: ")
      for j in listaclientes:
       if j.curp == num:
-       a = int(input("¿Qué desea modificar: 1. Dirección\n2. Número de teléfono"))
+       a = int(input("¿Qué desea modificar:\n1. Dirección\n2. Número de teléfono "))
        if a == 1:     
-         modificacion = input("Ingrese la nueva dirección")
-         j.dirección = modificacion
-      else:
+         modificacion = input("Ingrese la nueva dirección: ")
+         j.address = modificacion
+       elif a == 2:
+         modificacion = input("Ingrese el nuevo número: ")
+         j.phone = modificacion
+      elif a != 1 or a != 2:
          print("No existe tal cuenta")     
     #FUNCIÓN PARA TRANSACCIÓN
     def transaccion():
      print("         ||||||||||REALIZA UNA TRANSACCIÓN ||||||||||")
-      
+     num=input("Ingrese la CURP de la persona: ")
+     for j in listaclientes:
+      if j.curp == num:
+       a = input("Desea\n1. Depositar\n2. Sacar dinero: ")
+       if a == 1:
+     
     #FUNCIÓN PARA VER 
     def ver():
      print("         ||||||||||VER CLIENTE||||||||||")
@@ -110,4 +118,3 @@ class Menu():
 #Termina clase
 MenuBanco=Menu()
 MenuBanco.menuprincipal()
-
