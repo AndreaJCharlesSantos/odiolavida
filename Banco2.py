@@ -1,7 +1,6 @@
 import os
 
 class Cliente(object):
-    cont=0
     #Los atributos de cliente
     def __init__(self, name, date, curp, address, phone, first_deposit, account_type):
      self.name = name
@@ -24,6 +23,26 @@ class Cliente(object):
       archivocliente.write(self.first_deposit + "|")
       archivocliente.write(self.account_type + "\n")
       archivocliente.close()
+    
+    #Función para borrar clientes
+
+
+class Menu():
+    num=0
+    cont = 0
+    #FUNCIÓN PARA CREAR CLIENTE  
+    def NewAccount():
+     print("        ||||||||||CREA UNA NUEVA CUENTA||||||||||") 
+     nombre = input("Ingrese el nombre del cliente: ")
+     date=input("Ingrese la fecha de nacimiento dd/mm/yyyy: ")
+     curp=input("Ingrese CURP de la persona: ")
+     address=input("Ingrese la dirección: ")
+     phone=input("Ingrese el número de teléfono: ")
+     first_deposit=input("Ingrese el deposito: ")
+     account_type=input("Seleccione el tipo de cuenta: \n1. Ahorro \n2. Actual \n3. Por un año. \n4. Por dos años \n5. Por tres años ")
+     NUEVACUENTA=Cliente(nombre,date,curp,address,phone,first_deposit,account_type)
+     Cliente.IngresarCliente(NUEVACUENTA)  
+     op=int(input("Ingrese un número para continuar "))
     #Función para buscar clientes
     def BuscarCliente(self):
      cont=0
@@ -34,27 +53,23 @@ class Cliente(object):
       #print("Registro: "+j) # se parte la cadena con | y se trabaja con posiciones
       nueva = j.split('|')
       cont = cont+1
-      print(nueva[2])
-      print(cont)
-      # la posicion 2 es el curp
-
       if nueva[2] == num:
         '''linea = archivocliente.readline()'''
         '''print(linea)'''
-        print('Nombre: '+ nueva[0])
-        print('Fecha: '+ nueva[1])
-        print('Curp: '+ nueva[2])
-        print('Dirección: '+ nueva[3])
-        print('Telefono: '+ nueva[4])
-        print('Deposito: '+ nueva[5])
-        print('Tipo: '+ nueva[6])
+        print('Nombre: '+ nueva[cont-2])
+        print('Fecha: '+ nueva[cont-1])
+        print('Curp: '+ nueva[cont])
+        print('Dirección: '+ nueva[cont+1])
+        print('Telefono: '+ nueva[cont+2])
+        print('Deposito: '+ nueva[cont+3])
+        print('Tipo: '+ nueva[cont+4])
         existe = 1
-      else:
-       archivocliente.close()
+     archivocliente.close()
      if existe == 0:
-       print("No se encontró al cliente")      
-    #Función para borrar clientes
-    def BorrarCliente():
+       print("No se encontró al cliente")  
+
+
+    def BorrarCliente(self):
       num = input("Ingrese la CURP del cliente: ")
       archivocliente = open("Archivo.txt", "r") #Abres archivo original
       archivocopia=open("Archivocopia.txt", "a") #Este es uno de copia para reemplazar
@@ -77,27 +92,12 @@ class Cliente(object):
       archivocopia.close()
       os.remove("Archivocopia.txt")
     #Función para ver lista
-    def view_list():
+    
+    def view_list(self):
      archivocliente = open("Archivo.txt", "r")
      for j in archivocliente:
       print (j)
      archivocliente.close()
-     op=int(input("Ingrese un número para continuar "))
-
-class Menu():
-    num=0
-    #FUNCIÓN PARA CREAR CLIENTE  
-    def NewAccount():
-     print("        ||||||||||CREA UNA NUEVA CUENTA||||||||||") 
-     nombre = input("Ingrese el nombre del cliente: ")
-     date=input("Ingrese la fecha de nacimiento dd/mm/yyyy: ")
-     curp=input("Ingrese CURP de la persona: ")
-     address=input("Ingrese la dirección: ")
-     phone=input("Ingrese el número de teléfono: ")
-     first_deposit=input("Ingrese el deposito: ")
-     account_type=input("Seleccione el tipo de cuenta: \n1. Ahorro \n2. Actual \n3. Por un año. \n4. Por dos años \n5. Por tres años ")
-     NUEVACUENTA=Cliente(nombre,date,curp,address,phone,first_deposit,account_type)
-     Cliente.IngresarCliente(NUEVACUENTA)  
      op=int(input("Ingrese un número para continuar "))
 
     #FUNCIÓN MENÚ PRINCIPAL
@@ -121,13 +121,13 @@ class Menu():
        print("         ||||||||||REALIZA UNA TRANSACCIÓN ||||||||||")
       elif op == 4:
        print("         ||||||||||VER CLIENTE||||||||||")
-       Cliente.BuscarCliente()        
+       Menu.BuscarCliente(self)        
       elif op == 5:
        print("         |||||||||BORRAR CLIENTE||||||||")
-       Cliente.BorrarCliente()       
+       Menu.BorrarCliente(self)       
       elif op == 6:
        print("         |||||||||VER LISTA||||||||")
-       Cliente.view_list()
+       Menu.view_list(self)
       elif op == 7:
        print("Gracias por usar el programa")
        exit   
